@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -22,7 +23,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages="com.udemy.springsecurity.demo")
-
+@PropertySource("classpath:persistence-mysql.properties")
 public class DemoAppConfig {
 	
 	// set up variable to hold the properties
@@ -75,20 +76,20 @@ public class DemoAppConfig {
 		
 		
 		// set connection pool props
+		
+		/**/
+		
 		securityDataSource.setInitialPoolSize(
-				getIntProperty("connection.pool.initialPoolSize")); // initial pool size in properties file
-		
-		securityDataSource.setMinPoolSize(
-				getIntProperty("connection.pool.minPoolSize"));
-		
-		securityDataSource.setMaxPoolSize(
-				getIntProperty("connection.pool.maxPoolSize"));
-		
-		securityDataSource.setMaxIdleTime(
-				getIntProperty("connection.pool.setMaxIdleTime"));
-		
-		
-		
+				getIntProperty("connection.pool.initialPoolSize"));
+
+        securityDataSource.setMinPoolSize(
+                getIntProperty("connection.pool.minPoolSize"));
+
+        securityDataSource.setMaxPoolSize(
+                getIntProperty("connection.pool.maxPoolSize"));
+
+        securityDataSource.setMaxIdleTime(
+                getIntProperty("connection.pool.maxIdleTime"));
 		
 		return securityDataSource;
 		
